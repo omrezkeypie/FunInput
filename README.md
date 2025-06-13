@@ -1,57 +1,59 @@
 # FunInput
-FunInput is a module for roblox that allows to easily setup actions that correspond to different keybinds from seperate devices for user input handling. 
 
-Action priority allows for fine grained control of action behavior with the same keybinds.
+**FunInput** is a modular input handling system for Roblox that simplifies the process of binding gameplay actions to inputs from multiple device types—keyboard, gamepad, and mobile.
 
-Toggle setting for actions per device type. for example a run button on mobile that when pressed initially starts a run state and when pressed again stops the run state meanwhile on PC you hold shift to stay on the run state and when releasing the shift button stop the run state.
+It supports advanced features like:
+- 🎛️ **Action priority**, allowing fine-grained control over which input gets handled when multiple actions share the same key.
+- 🔄 **Toggle settings per device type**, enabling different behavior for inputs depending on the device. For example, a "Run" action can be toggleable on mobile (tap to start/stop running) and hold-based on PC (hold Shift to run).
+- 🧠 **Context-based activation**, so you can enable or disable entire sets of actions depending on the current game state (e.g., menu vs gameplay).
+  
+FunInput was inspired by Roblox's new `ContextActionService` input model, but provides a more developer-friendly and extensible interface for complex projects.
 
-Disabling and enabling context to easily control which actions should be active at what time.
+---
 
-This module was inspired by roblox's new input action system.
+## 🔧 Example Usage
 
-# Example usage
+A basic script showing how to set up actions for multiple input types:
 
-A simple script showing the basic setup and usage of the module.
-
-```luau
+```lua
 local FunInput = require(script.FunInput)
 local CreateContexts = FunInput.CreateContexts
 
 local Player = game.Players.LocalPlayer
-local PlayerGui = Player.PlayerGui
+local PlayerGui = Player:WaitForChild("PlayerGui")
 
-local Button = PlayerGui:WaitForChild("MobileButtons"):WaitForChild("Frame"):WaitForChild("PlaceTower")
+local Button = PlayerGui:WaitForChild("MobileButtons")
+    :WaitForChild("Frame")
+    :WaitForChild("PlaceTower")
 
 CreateContexts {
-	Gameplay = {
-		PlaceTower = {
-			PC = {
-				Input = Enum.KeyCode.X,
-				Toggle = false,
-				Priority = 5,
-			},
-			Gamepad = {
-				Input = Enum.KeyCode.DPadDown,
-				Toggle = false,
-				Priority = 99999,
-			},
-			Mobile = {
-				Button = Button,
-				Toggle = false,
-				Priority = 2,
-			}
-		},
-	}
-} 
+    Gameplay = {
+        PlaceTower = {
+            PC = {
+                Input = Enum.KeyCode.X,
+                Toggle = false,
+                Priority = 5,
+            },
+            Gamepad = {
+                Input = Enum.KeyCode.DPadDown,
+                Toggle = false,
+                Priority = 99999,
+            },
+            Mobile = {
+                Button = Button,
+                Toggle = false,
+                Priority = 2,
+            }
+        },
+    }
+}
 
-local Disconnect = FunInput.BindToActionActivated("PlaceTower",function()
-	print("Place tower action activated!")
+-- Bind to action callbacks
+local disconnectActivate = FunInput.BindToActionActivated("PlaceTower", function()
+    print("Place tower action activated!")
 end)
 
-local Disconnect = FunInput.BindToActionDeactivated("PlaceTower",function()
-	print("Place tower action deactivated!!")
+local disconnectDeactivate = FunInput.BindToActionDeactivated("PlaceTower", function()
+    print("Place tower action deactivated!")
 end)
 ```
-
-Anytime one of the keybinds of the action is used (PC, Gamepad or Mobile) any binded functions to that action will be called.
-If there's multiple actions with the same keybind the action with the higher priority will be called.
