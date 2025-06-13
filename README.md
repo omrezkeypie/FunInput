@@ -57,3 +57,11 @@ local disconnectDeactivate = FunInput.BindToActionDeactivated("PlaceTower", func
     print("Place tower action deactivated!")
 end)
 ```
+
+# API
+
+```lua
+CreateContexts(SetupContexts : {[string] : {[string] : Action}}) : true
+
+
+```
