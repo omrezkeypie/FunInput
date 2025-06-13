@@ -2,10 +2,10 @@
 
 **FunInput** is a modular input handling system for Roblox that simplifies the process of binding gameplay actions to inputs from multiple device types—keyboard, gamepad, and mobile.
 
-It supports advanced features like:
-- 🎛️ **Action priority**, allowing fine-grained control over which input gets handled when multiple actions share the same key.
-- 🔄 **Toggle settings per device type**, enabling different behavior for inputs depending on the device. For example, a "Run" action can be toggleable on mobile (tap to start/stop running) and hold-based on PC (hold Shift to run).
-- 🧠 **Context-based activation**, so you can enable or disable entire sets of actions depending on the current game state (e.g., menu vs gameplay).
+Features in the module:
+- **Action priority**, allowing fine-grained control over which input gets handled when multiple actions share the same key.
+- **Toggle settings per device type**, enabling different behavior for inputs depending on the device. For example, a "Run" action can be toggleable on mobile (tap to start/stop running) and hold-based on PC (hold Shift to run).
+- **Context-based activation**, so you can enable or disable entire sets of actions depending on the current game state (e.g., menu vs gameplay).
   
 FunInput was inspired by Roblox's new `ContextActionService` input model, but provides a more developer-friendly and extensible interface for complex projects.
 
