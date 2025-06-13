@@ -11,7 +11,7 @@ FunInput was inspired by Roblox's new `ContextActionService` input model, but pr
 
 ---
 
-## 🔧 Example Usage
+## Example Usage
 
 A basic script showing how to set up actions for multiple input types:
 
