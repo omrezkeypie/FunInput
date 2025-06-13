@@ -1,6 +1,13 @@
 # FunInput
-FunInput is a module for roblox that handles different inputs from different devices and allows you easily setup different actions for different keybinds while easily making said actions be handled for different devices.
-This module was inspired by roblox's new input action system. I disliked how it was completely instance dependent so i decided to make my own.
+FunInput is a module for roblox that allows to easily setup actions that correspond to different keybinds from seperate devices for user input handling. 
+
+Action priority allows for fine grained control of action behavior with same the same keybinds.
+
+Toggle setting for actions per device type. for example a run button on mobile that when pressed initially starts a run state and when pressed again stops the run state meanwhile on PC you hold shift to stay on the run state and when releasing the shift button stop the run state.
+
+Disabling and enabling context to easily control which actions should be active at what time.
+
+This module was inspired by roblox's new input action system.
 
 # Example usage
 
