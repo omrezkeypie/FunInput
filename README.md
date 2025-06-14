@@ -52,7 +52,7 @@ CreateContexts {
 } 
 ```
 
-In this example, the Run action behaves differently depending on the device:
+In this example, the `Run` action behaves differently depending on the device:
 
 - PC - the player must hold the Shift key to stay in the run state. Releasing the key deactivates the action.
 
@@ -157,13 +157,13 @@ Toggles a context on and off, enabling or disabling all the actions declared on 
 BindToActionActivated(ActionName : string,Callback : (GameProcessed : boolean) -> ()) : () -> ()
 ```
 
-Adds a callback function to the provided action. When the actions inputs are activated all callbacks under said action get called. Callbacks get passed GameProcessed. Returns a disconnect function that removes that specific callback.
+Adds a callback function to the provided action. When the action's inputs are activated, all callbacks under that action get called. Callbacks receive `GameProcessed`. Returns a disconnect function that removes that specific callback.
 
 ```lua
 BindToActionDeactivated(ActionName : string,Callback : (GameProcessed : boolean) -> ()) : () -> ()
 ```
 
-Adds a callback function to the provided action. When the actions inputs are deactivated all callbacks under said action get called. Callbacks get passed GameProcessed. Returns a disconnect function that removes that specific callback.
+Adds a callback function to the provided action. When the action's inputs are deactivated, all callbacks under that action get called. Callbacks receive `GameProcessed`. Returns a disconnect function that removes that specific callback.
 
 ```lua
 SetActionKeybind(ActionName : string,NewBinding : Enum.KeyCode | Enum.UserInputType)
