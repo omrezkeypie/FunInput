@@ -28,9 +28,9 @@ CreateContexts {
 	}
 } 
 ```
-In this case when the spacebar is pressed the Interact action will fire over the Jump action as its priority is higher. The highest priority action is called.
+In this case, when the spacebar is pressed, the `Interact` action fires instead of `Jump` because it has a higher priority (2 vs 1). The system always triggers the action with the highest priority for a given input.
 
-If there is no Priority key the system defaults the actions priority value to 1 for that device.
+If the `Priority` key is omitted for an action on a device, it defaults to 1.
 
 ### **Toggle settings per device type**, enabling toggle behavior for actions depending on the device.
 ```lua
@@ -157,13 +157,13 @@ Toggles a context on and off, enabling or disabling all the actions declared on 
 BindToActionActivated(ActionName : string,Callback : (GameProcessed : boolean) -> ()) : () -> ()
 ```
 
-Adds a callback function to the provided action. When the actions inputs are activated all callbacks under said action get called. Callbacks get passed GameProccesed. Returns a disconnect function that removes that specific callback.
+Adds a callback function to the provided action. When the actions inputs are activated all callbacks under said action get called. Callbacks get passed GameProcessed. Returns a disconnect function that removes that specific callback.
 
 ```lua
 BindToActionDeactivated(ActionName : string,Callback : (GameProcessed : boolean) -> ()) : () -> ()
 ```
 
-Adds a callback function to the provided action. When the actions inputs are deactivated all callbacks under said action get called. Callbacks get passed GameProccesed. Returns a disconnect function that removes that specific callback.
+Adds a callback function to the provided action. When the actions inputs are deactivated all callbacks under said action get called. Callbacks get passed GameProcessed. Returns a disconnect function that removes that specific callback.
 
 ```lua
 SetActionKeybind(ActionName : string,NewBinding : Enum.KeyCode | Enum.UserInputType)
