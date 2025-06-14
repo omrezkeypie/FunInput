@@ -108,7 +108,7 @@ local Button = PlayerGui:WaitForChild("MobileButtons")
 
 CreateContexts {
     Gameplay = {
-        PlaceTower = {
+        DoSomethingCool = {
             PC = {
                 Input = Enum.KeyCode.X,
                 Toggle = false,
@@ -128,12 +128,12 @@ CreateContexts {
     }
 }
 
-local DisconnectActivate = FunInput.BindToActionActivated("PlaceTower", function()
-    print("Place tower action activated!")
+local DisconnectActivate = FunInput.BindToActionActivated("DoSomethingCool", function()
+    print("Did something cool!")
 end)
 
-local DisconnectDeactivate = FunInput.BindToActionDeactivated("PlaceTower", function()
-    print("Place tower action deactivated!")
+local DisconnectDeactivate = FunInput.BindToActionDeactivated("DoSomethingCool", function()
+    print("Stopped doing something cool!")
 end)
 ```
 
