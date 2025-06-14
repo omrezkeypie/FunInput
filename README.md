@@ -89,10 +89,6 @@ FunInput.ToggleContext("Gameplay",false)
 FunInput.ToggleContext("Menu",true)
 ```
 
-
-  
-FunInput was inspired by Roblox's new user action system.
-
 ---
 
 # Example Usage
