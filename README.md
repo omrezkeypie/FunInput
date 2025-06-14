@@ -3,7 +3,7 @@
 **FunInput** is a modular input handling system for Roblox that simplifies the process of binding gameplay actions to inputs from multiple device types—keyboard, gamepad, mobile and mouse.
 
 Features in the module:
-- **Action priority**, allowing fine-grained control over which input gets handled when multiple actions share the same key.
+## **Action priority**, allowing fine-grained control over which input gets handled when multiple actions share the same key.
 
 ```lua
 CreateContexts {
@@ -31,7 +31,7 @@ In this case when the spacebar is pressed the Interact action will fire over the
 
 If there is no Priority key the system defaults the actions priority value to 1 for that device.
 
-- **Toggle settings per device type**, enabling different behavior for inputs depending on the device. For example, a "Run" action can be toggleable on mobile (tap to start/stop running) and hold-based on PC (hold Shift to run).
+## **Toggle settings per device type**, enabling different behavior for inputs depending on the device. For example, a "Run" action can be toggleable on mobile (tap to start/stop running) and hold-based on PC (hold Shift to run).
 ```lua
 CreateContexts {
 	Gameplay = {
@@ -53,17 +53,17 @@ CreateContexts {
 
 In this example, the Run action behaves differently depending on the device:
 
-   - On PC, the player must hold the Shift key to stay in the run state. Releasing the key deactivates the action.
+ - On PC, the player must hold the Shift key to stay in the run state. Releasing the key deactivates the action.
 
-   - On Gamepad, pressing the left joystick toggles the run state: the first press activates it, the second deactivates it, and so on. Releasing the joystick has no effect.
+ - On Gamepad, pressing the left joystick toggles the run state: the first press activates it, the second deactivates it, and so on. Releasing the joystick has no effect.
 
-- **Context-based activation**, so you can enable or disable entire sets of actions depending on the current game state (e.g., menu vs gameplay).
+## **Context-based activation**, so you can enable or disable entire sets of actions depending on the current game state (e.g., menu vs gameplay).
   
 FunInput was inspired by Roblox's new user action system.
 
 ---
 
-## Example Usage
+# Example Usage
 
 A basic script showing how to setup and use FunInput.
 
