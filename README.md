@@ -31,7 +31,7 @@ In this case when the spacebar is pressed the Interact action will fire over the
 
 If there is no Priority key the system defaults the actions priority value to 1 for that device.
 
-- **Toggle settings per device type**, enabling different behavior for inputs depending on the device. For example, a "Run" action can be toggleable on mobile (tap to start/stop running) and hold-based on PC (hold Shift to run).
+- **Toggle settings per device type**, enabling different behavior for inputs depending on the device.
 ```lua
 CreateContexts {
 	Gameplay = {
