@@ -32,6 +32,31 @@ In this case when the spacebar is pressed the Interact action will fire over the
 If there is no Priority key the system defaults the actions priority value to 1 for that device.
 
 - **Toggle settings per device type**, enabling different behavior for inputs depending on the device. For example, a "Run" action can be toggleable on mobile (tap to start/stop running) and hold-based on PC (hold Shift to run).
+```lua
+CreateContexts {
+	Gameplay = {
+		Run = {
+			PC = {
+				Input = Enum.KeyCode.LeftShift,
+				Toggle = false,
+				Priority = 1,
+			},
+			Gamepad = {
+				Input = Enum.KeyCode.ButtonL3,
+				Toggle = true,
+				Priority = 1,
+			},
+		},
+	},
+} 
+```
+
+In this example, the Run action behaves differently depending on the device:
+
+- On PC, the player must hold the Shift key to stay in the run state. Releasing the key deactivates the action.
+
+- On Gamepad, pressing the left joystick toggles the run state: the first press activates it, the second deactivates it, and so on. Releasing the joystick has no effect.
+
 - **Context-based activation**, so you can enable or disable entire sets of actions depending on the current game state (e.g., menu vs gameplay).
   
 FunInput was inspired by Roblox's new user action system.
