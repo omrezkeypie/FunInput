@@ -4,7 +4,7 @@
 
 Wally:
 
-`OmrezKeyBind = "omrezkeypie/omrezkeybind@0.1.0"` 
+```OmrezKeyBind = "omrezkeypie/omrezkeybind@0.1.0"``` 
 
 Features in the module:
 
