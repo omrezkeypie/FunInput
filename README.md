@@ -13,7 +13,7 @@ FunInput was inspired by Roblox's new user action system.
 
 ## Example Usage
 
-A basic script showing how to set up actions for multiple input types:
+A basic script showing how to setup and use FunInput.
 
 ```lua
 local FunInput = require(script.FunInput)
@@ -62,6 +62,37 @@ end)
 
 ```lua
 CreateContexts(SetupContexts : {[string] : {[string] : Action}}) : true
-
-
 ```
+
+Look at example code for usage.
+
+```lua
+ToggleContext(ContextName : string,State : boolean)
+```
+
+Toggles a context on and off, enabling or disabling all the actions declared on it.
+
+```lua
+BindToActionActivated(ActionName : string,Callback : (GameProcessed : boolean) -> ()) : () -> ()
+```
+
+Adds a callback function to the provided action. When the actions inputs are activated all callbacks under said action get called. Callbacks get passed GameProccesed. Returns a disconnect function that removes that specific callback.
+
+```lua
+BindToActionDeactivated(ActionName : string,Callback : (GameProcessed : boolean) -> ()) : () -> ()
+```
+
+Adds a callback function to the provided action. When the actions inputs are deactivated all callbacks under said action get called. Callbacks get passed GameProccesed. Returns a disconnect function that removes that specific callback.
+
+```lua
+SetActionKeybind(ActionName : string,NewBinding : Enum.KeyCode | Enum.UserInputType)
+```
+
+Sets a specific actions input keybind.
+
+```lua
+ResetActionKeybinds()
+```
+
+Resets all actions keybinds to default. to what is defined in the CreateContexts function call.
+
