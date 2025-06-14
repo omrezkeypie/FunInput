@@ -58,7 +58,38 @@ In this example, the Run action behaves differently depending on the device:
 
 - Gamepad - pressing the left joystick toggles the run state: the first press activates it, the second deactivates it, and so on. Releasing the joystick has no effect.
 
-### **Context-based activation**, so you can enable or disable entire sets of actions depending on the current game state (e.g., menu vs gameplay).
+### **Context-based activation**
+
+Actions are grouped under contexts. You can disable and enable contexts whenever allowing you to control when actions are enabled or disabled depending on the current game state.
+
+```lua
+CreateContexts {
+	Gameplay = {
+		Run = {
+			PC = {
+				Input = Enum.KeyCode.LeftShift,
+				Toggle = false,
+				Priority = 1,
+			},
+		},
+	},
+	Menu = {
+		CloseMenu = {
+			PC = {
+				Input = Enum.KeyCode.Escape,
+				Toggle = false,
+				Priority = 1,
+			},
+		},
+	},
+} 
+
+--When in menu
+FunInput.ToggleContext("Gameplay",false)
+FunInput.ToggleContext("Menu",true)
+```
+
+
   
 FunInput was inspired by Roblox's new user action system.
 
