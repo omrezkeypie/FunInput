@@ -48,12 +48,11 @@ CreateContexts {
     }
 }
 
--- Bind to action callbacks
-local disconnectActivate = FunInput.BindToActionActivated("PlaceTower", function()
+local DisconnectActivate = FunInput.BindToActionActivated("PlaceTower", function()
     print("Place tower action activated!")
 end)
 
-local disconnectDeactivate = FunInput.BindToActionDeactivated("PlaceTower", function()
+local DisconnectDeactivate = FunInput.BindToActionDeactivated("PlaceTower", function()
     print("Place tower action deactivated!")
 end)
 ```
@@ -65,6 +64,7 @@ CreateContexts(SetupContexts : {[string] : {[string] : Action}}) : true
 ```
 
 Look at example code for usage.
+Gets passed a table where each key corresponds to the ContextName and the value is another table where all the contexts actions are defined.
 
 ```lua
 ToggleContext(ContextName : string,State : boolean)
