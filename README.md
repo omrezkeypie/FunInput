@@ -4,6 +4,33 @@
 
 Features in the module:
 - **Action priority**, allowing fine-grained control over which input gets handled when multiple actions share the same key.
+
+```lua
+CreateContexts {
+	Gameplay = {
+		Jump = {
+			PC = {
+				Input = Enum.KeyCode.Space,
+				Toggle = false,
+				Priority = 1,
+			},
+		},
+	},
+	Interaction = {
+		Interact = {
+			PC = {
+				Input = Enum.KeyCode.Space,
+				Toggle = false,
+				Priority = 2,
+			}
+		}
+	}
+} 
+```
+In this case when the spacebar is pressed the Interact action will fire over the Jump action as its priority is higher. The highest priority action is called.
+
+If there is no Priority key the system defaults the actions priority value to 1 for that device.
+
 - **Toggle settings per device type**, enabling different behavior for inputs depending on the device. For example, a "Run" action can be toggleable on mobile (tap to start/stop running) and hold-based on PC (hold Shift to run).
 - **Context-based activation**, so you can enable or disable entire sets of actions depending on the current game state (e.g., menu vs gameplay).
   
