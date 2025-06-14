@@ -28,7 +28,7 @@ CreateContexts {
 	}
 } 
 ```
-In this case, when the spacebar is pressed, the `Interact` action fires instead of `Jump` because it has a higher priority (2 vs 1). The system always triggers the action with the highest priority for a given input.
+In this case, when the spacebar is pressed, the `Interact` action activates instead of `Jump` because it has a higher priority (2 vs 1). The system always activates the action with the highest priority for a given input.
 
 If the `Priority` key is omitted for an action on a device, it defaults to 1.
 
