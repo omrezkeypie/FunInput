@@ -1,6 +1,6 @@
-# FunInput
+# OmrezKeyBind
 
-**FunInput** is a modular input handling system for Roblox that simplifies the process of binding gameplay actions to inputs from multiple device types—keyboard, gamepad, mobile and mouse.
+**OmrezKeyBind** is a modular input handling system for Roblox that simplifies the process of binding gameplay actions to inputs from multiple device types—keyboard, gamepad, mobile and mouse.
 
 Features in the module:
 
