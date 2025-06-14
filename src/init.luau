@@ -63,7 +63,7 @@ local function AssertDefined<T>(Value: T?, Message: string?): T
 	if Value == nil then
 		error(Message or "Expected value to be defined, got nil", 2)
 	end
-	
+
 	return Value
 end
 
@@ -73,13 +73,13 @@ local function GetContextFromActionName(SearchActionName : string) : Context?
 			return Context
 		end
 	end
-	
+
 	return
 end
 
 local function GetCurrentDevice(): string
 	local inputType = UserInputService:GetLastInputType()
-		
+
 	if inputType == Enum.UserInputType.Keyboard or inputType == Enum.UserInputType.MouseMovement then
 		return "PC"
 	elseif inputType.Name:match("^Gamepad") then
@@ -94,14 +94,13 @@ end
 local function CallActivatedCallbacks(Context : Context,ActionName : string,GameProcessed : boolean)
 	local Device = GetCurrentDevice()
 	local Toggle = Context.ToggledActionsStates[ActionName][Device]
-	
+
 	if Toggle == nil then
 		for _,Callback in ActionActivatedBinds[ActionName] do
 			Callback(GameProcessed)
 		end
 	else
-		--false for activated, true for deactivated.
-		if Toggle == false then
+		if Toggle then
 			for _,Callback in ActionActivatedBinds[ActionName] do
 				Callback(GameProcessed)
 			end
@@ -118,7 +117,7 @@ end
 local function CallDeactivatedCallbacks(Context : Context,ActionName : string,GameProcessed : boolean)
 	local Device = GetCurrentDevice()
 	local Toggle = Context.ToggledActionsStates[ActionName][Device]
-		
+
 	if Toggle == nil then
 		for _,Callback in ActionDeactivatedBinds[ActionName] do
 			Callback(GameProcessed)
@@ -129,11 +128,11 @@ end
 local function SetupMobileButton(Button: TextButton | ImageButton, ActionName: string)
 	Button.InputBegan:Connect(function(Input)
 		if Input.UserInputType ~= Enum.UserInputType.MouseButton1 and Input.UserInputType ~= Enum.UserInputType.Touch then return end
-		
+
 		local Context = AssertDefined(GetContextFromActionName(ActionName))
-		
+
 		CallActivatedCallbacks(Context,ActionName,false)
-		
+
 		Button.InputEnded:Once(function(Input)
 			if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
 				CallDeactivatedCallbacks(Context,ActionName,false)
@@ -144,21 +143,21 @@ end
 
 local function SetupActions(Actions : {[string] : Action}) : ToggledActions
 	local ToggleKeybinds = {}
-	
+
 	for ActionName,ActionKeybinds in Actions do	
 		ActionActivatedBinds[ActionName] = {}
 		ActionDeactivatedBinds[ActionName] = {}
 		ToggleKeybinds[ActionName] = {}		
-		
+
 		for DeviceName,Binding : Binding in pairs(ActionKeybinds) do
 			if not Keybinds[Binding.Input] and DeviceName ~= "Mobile" then
 				Keybinds[Binding.Input] = {}
 				OriginalKeybinds[Binding.Input] = {}
 			end
-			
+
 			if DeviceName == "Mobile" then
 				if not ActionKeybinds.Mobile then continue end
- 
+
 				local MobileBind = AssertDefined(ActionKeybinds.Mobile)
 
 				SetupMobileButton(MobileBind.Button,ActionName)
@@ -167,36 +166,36 @@ local function SetupActions(Actions : {[string] : Action}) : ToggledActions
 					ActionName = ActionName,
 					Priority = Binding.Priority or 1,
 				}
-				
+
 				table.insert(OriginalKeybinds[Binding.Input],NewKeybind)
 				table.insert(Keybinds[Binding.Input],NewKeybind)
 			end
-			
+
 			if Binding.Toggle then
-				ToggleKeybinds[ActionName][DeviceName] = false
+				ToggleKeybinds[ActionName][DeviceName] = true
 			end
 		end
 	end
-	
+
 	return ToggleKeybinds
 end
 
 local function GetHighestPriorityAction(Input : Enum.KeyCode | Enum.UserInputType,Type : number) : string?
 	local HighestPriority = 0
 	local HighestAction
-	
+
 	if not Keybinds[Input] then return end
-	
+
 	for _,Binding in Keybinds[Input] do
 		if Binding.Priority <= HighestPriority then continue end
-		
+
 		local Context = GetContextFromActionName(Binding.ActionName)
 		if Context and not Context.Enabled then continue end
-		
+
 		HighestPriority = Binding.Priority
 		HighestAction = Binding.ActionName		
 	end
-	
+
 	return HighestAction
 end
 
@@ -205,21 +204,21 @@ end
 local function CreateContexts(SetupContexts : {[string] : {[string] : Action}}) : true
 	for ContextName,Actions in SetupContexts do
 		local ActionStates = SetupActions(Actions)
-				
+
 		Contexts[ContextName] = {
 			Enabled = true,
 			Actions = Actions,
 			ToggledActionsStates = ActionStates,
 		}
 	end
-	
+
 	return true
 end
 
 local function ToggleContext(ContextName : string,State : boolean)
 	local Context = Contexts[ContextName]
 	if not Context then print(ContextName.." Doesn't exist.") return end
-	
+
 	Context.Enabled = State
 end
 
@@ -227,13 +226,13 @@ local function BindToActionActivated(ActionName : string,Callback : (GameProcess
 	if not ActionActivatedBinds[ActionName] then
 		error(ActionName.." Doesn't exist!")
 	end
-	
+
 	ActivatedBindsID += 1
-	
+
 	local CallbackID = ActivatedBindsID
-	
+
 	ActionActivatedBinds[ActionName][CallbackID] = Callback
-	
+
 	return function()
 		ActionActivatedBinds[ActionName][CallbackID] = nil
 	end
@@ -243,13 +242,13 @@ local function BindToActionDeactivated(ActionName : string,Callback : (GameProce
 	if not ActionDeactivatedBinds[ActionName] then
 		error(ActionName.." Doesn't exist!")
 	end
-	
+
 	DeactivatedBindsID += 1
-	
+
 	local CallbackID = DeactivatedBindsID
-	
+
 	ActionDeactivatedBinds[ActionName][CallbackID] = Callback
-	
+
 	return function()
 		ActionDeactivatedBinds[ActionName][CallbackID] = nil
 	end
@@ -263,32 +262,32 @@ local function GetActionKeybind(ActionName : string) : Enum.KeyCode? | Enum.User
 			return Binding
 		end
 	end
-	
+
 	return
 end
 
 local function SetActionKeybind(ActionName : string,NewBinding : Enum.KeyCode | Enum.UserInputType)
 	local CurrentBinding = AssertDefined(GetActionKeybind(ActionName))
 	if not CurrentBinding then return end
-		
+
 	local RemoveIndex
-	
+
 	for Index,Keybind in Keybinds[CurrentBinding] do
 		if Keybind.ActionName == ActionName then
 			RemoveIndex = Index
-			
+
 			break
 		end
 	end
-		
+
 	local Binding = Keybinds[CurrentBinding][RemoveIndex]
-	
+
 	table.remove(Keybinds[CurrentBinding],RemoveIndex)
-	
+
 	if not Keybinds[NewBinding] then
 		Keybinds[NewBinding] = {}
 	end
-	
+
 	table.insert(Keybinds[NewBinding],Binding)
 end
 
@@ -298,13 +297,13 @@ end
 
 local function GetCustomKeybinds() : {[string] : Enum.KeyCode | Enum.UserInputType}
 	local CustomKeybinds = {}
-	
+
 	for KeyCode,Bindings in Keybinds do
 		for _,Binding in Bindings do
 			CustomKeybinds[Binding.ActionName] = KeyCode
 		end
 	end
-	
+
 	return CustomKeybinds
 end
 
@@ -316,9 +315,9 @@ end
 
 UserInputService.InputBegan:Connect(function(Input,GameProcessed)
 	local InputType = Input.KeyCode ~= Enum.KeyCode.Unknown and Input.KeyCode or Input.UserInputType
-	
+
 	local ActionName = GetHighestPriorityAction(InputType,1)
-	
+
 	if ActionName then 
 		local Context = AssertDefined(GetContextFromActionName(ActionName))
 
