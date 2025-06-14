@@ -32,7 +32,7 @@ In this case, when the spacebar is pressed, the `Interact` action fires instead 
 
 If the `Priority` key is omitted for an action on a device, it defaults to 1.
 
-### **Toggle settings per device type**, enabling toggle behavior for actions depending on the device.
+### **Toggle property per device type**, enabling toggle behavior for actions depending on the device.
 ```lua
 CreateContexts {
 	Gameplay = {
