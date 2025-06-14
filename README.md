@@ -4,7 +4,7 @@
 
 Features in the module:
 
-### **Action priority**, allowing fine-grained control over which input gets handled when multiple actions share the same key.</u>
+### **Action priority**, allowing fine-grained control over which input gets handled when multiple actions share the same key.
 
 ```lua
 CreateContexts {
