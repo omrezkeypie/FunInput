@@ -1,6 +1,6 @@
 # FunInput
 
-**FunInput** is a modular input handling system for Roblox that simplifies the process of binding gameplay actions to inputs from multiple device types—keyboard, gamepad,mobile and mouse.
+**FunInput** is a modular input handling system for Roblox that simplifies the process of binding gameplay actions to inputs from multiple device types—keyboard, gamepad, mobile and mouse.
 
 Features in the module:
 - **Action priority**, allowing fine-grained control over which input gets handled when multiple actions share the same key.
