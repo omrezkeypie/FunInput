@@ -96,3 +96,20 @@ ResetActionKeybinds()
 
 Resets all actions keybinds to default. to what is defined in the CreateContexts function call.
 
+```lua
+GetCustomKeybinds() : {[string] : Enum.KeyCode | Enum.UserInputType}
+```
+
+Returns a table where the key is the action name and the value is the keybind it corresponds to.
+
+```lua
+LoadCustomKeybinds(CustomKeybinds : {[string] : Enum.KeyCode | Enum.UserInputType})
+```
+
+Gets passed a table in the format that GetCustomKeybinds returns and sets all actions keybind to what is specified in the table.
+
+```lua
+GetActionKeybind(ActionName : string) : Enum.KeyCode? | Enum.UserInputType?
+```
+
+Returns what keybind a specific action has.
