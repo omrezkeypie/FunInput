@@ -4,7 +4,7 @@
 
 Features in the module:
 
-#### **Action priority**, allowing fine-grained control over which input gets handled when multiple actions share the same key.</u>
+### **Action priority**, allowing fine-grained control over which input gets handled when multiple actions share the same key.</u>
 
 ```lua
 CreateContexts {
@@ -32,7 +32,7 @@ In this case when the spacebar is pressed the Interact action will fire over the
 
 If there is no Priority key the system defaults the actions priority value to 1 for that device.
 
-#### **Toggle settings per device type**, enabling different behavior for inputs depending on the device.
+### **Toggle settings per device type**, enabling different behavior for inputs depending on the device.
 ```lua
 CreateContexts {
 	Gameplay = {
@@ -58,7 +58,7 @@ In this example, the Run action behaves differently depending on the device:
 
 - Gamepad - pressing the left joystick toggles the run state: the first press activates it, the second deactivates it, and so on. Releasing the joystick has no effect.
 
-#### **Context-based activation**, so you can enable or disable entire sets of actions depending on the current game state (e.g., menu vs gameplay).
+### **Context-based activation**, so you can enable or disable entire sets of actions depending on the current game state (e.g., menu vs gameplay).
   
 FunInput was inspired by Roblox's new user action system.
 
