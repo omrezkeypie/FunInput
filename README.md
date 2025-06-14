@@ -3,7 +3,8 @@
 **FunInput** is a modular input handling system for Roblox that simplifies the process of binding gameplay actions to inputs from multiple device types—keyboard, gamepad, mobile and mouse.
 
 Features in the module:
-<u>**Action priority**, allowing fine-grained control over which input gets handled when multiple actions share the same key.</u>
+
+### **Action priority**, allowing fine-grained control over which input gets handled when multiple actions share the same key.</u>
 
 ```lua
 CreateContexts {
@@ -31,7 +32,7 @@ In this case when the spacebar is pressed the Interact action will fire over the
 
 If there is no Priority key the system defaults the actions priority value to 1 for that device.
 
-- **Toggle settings per device type**, enabling different behavior for inputs depending on the device.
+### **Toggle settings per device type**, enabling different behavior for inputs depending on the device.
 ```lua
 CreateContexts {
 	Gameplay = {
@@ -53,11 +54,11 @@ CreateContexts {
 
 In this example, the Run action behaves differently depending on the device:
 
-PC - the player must hold the Shift key to stay in the run state. Releasing the key deactivates the action.
+- PC - the player must hold the Shift key to stay in the run state. Releasing the key deactivates the action.
 
-Gamepad - pressing the left joystick toggles the run state: the first press activates it, the second deactivates it, and so on. Releasing the joystick has no effect.
+- Gamepad - pressing the left joystick toggles the run state: the first press activates it, the second deactivates it, and so on. Releasing the joystick has no effect.
 
-- **Context-based activation**, so you can enable or disable entire sets of actions depending on the current game state (e.g., menu vs gameplay).
+### **Context-based activation**, so you can enable or disable entire sets of actions depending on the current game state (e.g., menu vs gameplay).
   
 FunInput was inspired by Roblox's new user action system.
 
