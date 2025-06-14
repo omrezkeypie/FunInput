@@ -58,7 +58,7 @@ In this example, the `Run` action behaves differently depending on the device:
 
 - Gamepad - pressing the left joystick toggles the run state: the first press activates it, the second deactivates it, and so on. Releasing the joystick has no effect.
 
-### **Context-based activation**
+### **Context-based action grouping**
 
 Actions are grouped under contexts. You can disable and enable contexts whenever allowing you to control when actions are enabled or disabled depending on the current game state.
 
