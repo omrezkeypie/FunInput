@@ -282,9 +282,7 @@ local function SetActionKeybind(ActionName : string,NewBinding : Enum.KeyCode | 
 			break
 		end
 	end
-	
-	print(RemoveIndex)
-	
+		
 	local Binding = Keybinds[CurrentBinding][RemoveIndex]
 	
 	table.remove(Keybinds[CurrentBinding],RemoveIndex)
