@@ -64,6 +64,7 @@ CreateContexts(SetupContexts : {[string] : {[string] : Action}}) : true
 ```
 
 Look at example code for usage.
+
 Gets passed a table where each key corresponds to the ContextName and the value is another table where all the contexts actions are defined.
 
 ```lua
