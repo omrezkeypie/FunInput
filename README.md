@@ -32,7 +32,7 @@ In this case when the spacebar is pressed the Interact action will fire over the
 
 If there is no Priority key the system defaults the actions priority value to 1 for that device.
 
-### **Toggle settings per device type**, enabling different behavior for inputs depending on the device.
+### **Toggle settings per device type**, enabling toggle behavior for actions depending on the device.
 ```lua
 CreateContexts {
 	Gameplay = {
