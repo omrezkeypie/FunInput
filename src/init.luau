@@ -69,13 +69,11 @@ end
 
 local function GetContextFromActionName(SearchActionName : string) : Context?
 	for _,Context in Contexts do
-		for ActionName,_ in Context.Actions do
-			if ActionName == SearchActionName then
-				return Context
-			end
+		if Context.Actions[SearchActionName] then
+			return Context
 		end
 	end
-
+	
 	return
 end
 
