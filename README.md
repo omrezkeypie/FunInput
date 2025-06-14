@@ -53,9 +53,9 @@ CreateContexts {
 
 In this example, the Run action behaves differently depending on the device:
 
-On PC, the player must hold the Shift key to stay in the run state. Releasing the key deactivates the action.
+PC - the player must hold the Shift key to stay in the run state. Releasing the key deactivates the action.
 
-On Gamepad, pressing the left joystick toggles the run state: the first press activates it, the second deactivates it, and so on. Releasing the joystick has no effect.
+Gamepad - pressing the left joystick toggles the run state: the first press activates it, the second deactivates it, and so on. Releasing the joystick has no effect.
 
 - **Context-based activation**, so you can enable or disable entire sets of actions depending on the current game state (e.g., menu vs gameplay).
   
