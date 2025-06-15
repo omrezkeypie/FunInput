@@ -27,6 +27,8 @@ type ToggledActions = {
 	}
 }
 
+type Callback = (GameProcessed : boolean,InputType : Enum.KeyCode | Enum.UserInputType?) -> ()
+
 type Context = {
 	Enabled : boolean,
 	Actions : {[string] : Action},
@@ -39,7 +41,7 @@ type ContextSetup = {
 }
 
 type ActionBinds = {
-	[string] : {(GameProcessed : boolean,InputType : Enum.KeyCode | Enum.UserInputType?) -> ()}
+	[string] : {Callback}
 } 
 
 type Keybinds = {
@@ -223,15 +225,15 @@ end
 
 local function GetContextData(ContextData : {[string] : Action,Enabled : boolean?}) : (boolean,{[string] : Action})	
 	local Enabled = if ContextData.Enabled ~= nil then ContextData.Enabled else true
-		
+
 	local Actions = {}
-	
+
 	for ActionName,Action in ContextData do
 		if ActionName == "Enabled" then continue end
-		
+
 		Actions[ActionName] = Action
 	end
-	
+
 	return Enabled,Actions
 end
 
@@ -240,9 +242,9 @@ end
 local function CreateContexts(SetupContexts : {[string] : {[string] : Action,Enabled : boolean?}}) : true
 	for ContextName,ContextData in SetupContexts do
 		local Enabled,Actions = GetContextData(ContextData)
-		
+
 		local ActionStates = SetupActions(Actions)
-				
+
 		Contexts[ContextName] = {
 			Enabled = Enabled,
 			Actions = Actions,
@@ -260,7 +262,7 @@ local function ToggleContext(ContextName : string,State : boolean)
 	Context.Enabled = State
 end
 
-local function BindToActionActivated(ActionName : string,Callback : (GameProcessed : boolean) -> ()) : () -> ()
+local function BindToActionActivated(ActionName : string,Callback : Callback) : () -> ()
 	if not ActionActivatedBinds[ActionName] then
 		error(ActionName.." Doesn't exist!")
 	end
@@ -276,7 +278,7 @@ local function BindToActionActivated(ActionName : string,Callback : (GameProcess
 	end
 end
 
-local function BindToActionDeactivated(ActionName : string,Callback : (GameProcessed : boolean) -> ()) : () -> ()
+local function BindToActionDeactivated(ActionName : string,Callback : Callback) : () -> ()
 	if not ActionDeactivatedBinds[ActionName] then
 		error(ActionName.." Doesn't exist!")
 	end
