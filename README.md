@@ -93,19 +93,19 @@ CreateContexts {
 } 
 
 --When in menu
-FunInput.ToggleContext("Gameplay",false)
-FunInput.ToggleContext("Menu",true)
+OmrezKeyBind.ToggleContext("Gameplay",false)
+OmrezKeyBind.ToggleContext("Menu",true)
 ```
 
 ---
 
 # Example Usage
 
-A basic script showing how to setup and use FunInput.
+A basic script showing how to setup and use OmrezKeyBind.
 
 ```lua
-local FunInput = require(script.FunInput)
-local CreateContexts = FunInput.CreateContexts
+local OmrezKeyBind = require(script.OmrezKeyBind)
+local CreateContexts = OmrezKeyBind.CreateContexts
 
 local Player = game.Players.LocalPlayer
 local PlayerGui = Player:WaitForChild("PlayerGui")
@@ -136,11 +136,11 @@ CreateContexts {
     }
 }
 
-local DisconnectActivate = FunInput.BindToActionActivated("DoSomethingCool", function()
+local DisconnectActivate = OmrezKeyBind.BindToActionActivated("DoSomethingCool", function()
     print("Did something cool!")
 end)
 
-local DisconnectDeactivate = FunInput.BindToActionDeactivated("DoSomethingCool", function()
+local DisconnectDeactivate = OmrezKeyBind.BindToActionDeactivated("DoSomethingCool", function()
     print("Stopped doing something cool!")
 end)
 ```
