@@ -133,27 +133,49 @@ For the explanation assume the actions combo inputs are A + B.
 OmrezKeyBind provides 4 default query functions. these being:
 * StrictOrdered:
   Inputs must be in order and one after another exactly as shown in the Input key of the action.
+  
   A + B -> Success
+  
   B + A -> Fail
+  
   A + [Any] + B -> Fail
+  
   B + [Any] + A -> Fail
+  
 * StrictUnordered
+* 
   Inputs must be one after another but order does not matter.
+  
   A + B -> Success
+  
   B + A -> Success
+  
   A + [Any] + B -> Fail
+  
   B + [Any] + A -> Fail
+  
 * LooseOrdered
+* 
   Inputs must be in order as shown in the Input key of the action but other inputs can be in between them.
+  
   A + B -> Success
+  
   B + A -> Fail
+  
   A + [Any] + B -> Success
+  
   B + [Any] + A -> Fail
+  
 * LooseUnordered
+* 
   Input order does not matter and there can be inputs in between them. as long as the inputs declared in the action are in the input queue the combo will succeed.
+  
   A + B -> Success
+  
   B + A -> Success
+  
   A + [Any] + B -> Success
+  
   B + [Any] + A -> Success
 
 Most of these are pretty useless but i made them just to test out the combo query system and logic.
