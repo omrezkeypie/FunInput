@@ -1,6 +1,6 @@
 # OmrezKeyBind
 
-**OmrezKeyBind** is a modular input handling system for Roblox that simplifies the process of binding gameplay actions to inputs from multiple device types—keyboard, gamepad, mobile and mouse.
+**OmrezKeyBind** is a modular input handling library for Roblox that simplifies the process of binding gameplay actions to inputs from multiple device types—keyboard, gamepad, mobile and mouse.
 
 It's inspired by Roblox's beta input action system.
 
