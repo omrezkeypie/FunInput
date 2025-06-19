@@ -97,6 +97,69 @@ OmrezKeyBind.ToggleContext("Gameplay",false)
 OmrezKeyBind.ToggleContext("Menu",true)
 ```
 
+### **Combo support with customizable query logic**
+
+For every action you can define if it's a Combo.
+
+```lua
+CreateContexts {
+	Gameplay = {
+		EpicCombo = {
+			PC = {
+				Input = {Enum.KeyCode.E,Enum.KeyCode.Q},
+				Toggle = false,
+				Priority = 1,
+				
+				Combo = {
+					Query = OmrezKeyBind.Combos.StrictOrdered,
+					HoldInputs = {},
+					GracePeriod = 0.45,
+				}
+			},
+		},
+	},
+} 
+```
+
+You pass a table to the action's Combo key which has 3 keys.
+
+* Query - The query function which interprets the input queue to try to detect if a combo was successful. OmrezKeyBind provides 4 default query functions but users can make their own custom ones.
+* HoldInputs - Which inputs need to be held down for the combo to succeed. Warning: If an input is in both Input and HoldInputs it will conflict and cause unpredictable behavior.)
+* GracePeriod - In what time frame the inputs should be accepted. Any input older then the grace period will be ignored.
+
+Query functions:
+For the explanation assume the actions combo inputs are A + B.
+
+OmrezKeyBind provides 4 default query functions. these being:
+* StrictOrdered:
+  Inputs must be in order and one after another exactly as shown in the Input key of the action.
+  A + B -> Success
+  B + A -> Fail
+  A + [Any] + B -> Fail
+  B + [Any] + A -> Fail
+* StrictUnordered
+  Inputs must be one after another but order does not matter.
+  A + B -> Success
+  B + A -> Success
+  A + [Any] + B -> Fail
+  B + [Any] + A -> Fail
+* LooseOrdered
+  Inputs must be in order as shown in the Input key of the action but other inputs can be in between them.
+  A + B -> Success
+  B + A -> Fail
+  A + [Any] + B -> Success
+  B + [Any] + A -> Fail
+* LooseUnordered
+  Input order does not matter and there can be inputs in between them. as long as the inputs declared in the action are in the input queue the combo will succeed.
+  A + B -> Success
+  B + A -> Success
+  A + [Any] + B -> Success
+  B + [Any] + A -> Success
+
+Most of these are pretty useless but i made them just to test out the combo query system and logic.
+
+Note: Inputs in the input queue get trimmed after 2 seconds.
+
 ---
 
 # Example Usage
