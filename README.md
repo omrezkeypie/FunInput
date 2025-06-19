@@ -23,7 +23,7 @@ local PlayerGui = Player:WaitForChild("PlayerGui")
 
 local Button = PlayerGui:WaitForChild("MobileButtons")
     :WaitForChild("Frame")
-    :WaitForChild("PlaceTower")
+    :WaitForChild("Button")
 
 CreateContexts {
     Gameplay = {
