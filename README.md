@@ -10,7 +10,7 @@ Wally:
 OmrezKeyBind = "omrezkeypie/omrezkeybind@0.1.3"
 ``` 
 
-Features in the module:
+# Features
 
 ### **Action priority**, allowing fine-grained control over which input gets handled when multiple actions share the same keybind.
 
