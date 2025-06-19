@@ -99,7 +99,7 @@ OmrezKeyBind.ToggleContext("Menu",true)
 
 ### **Combo support with customizable query logic**
 
-For every action you can define if it supports a combo.
+For every action you can define if it supports a combo. This field is optional.
 
 ```lua
 CreateContexts {
