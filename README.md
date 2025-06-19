@@ -258,7 +258,7 @@ The query function takes in 4 parameters:
 
 The combo query functions use a state machine to traverse the input queue and try to detect if a combo was successful. The query functions return 3 statuses to handle the logic.
 
-* Succeed - Input was as expected. Continue to the next input in input queue and to the next input in the combo's inputs.
+* Succeed - Input was as expected. Continue to the next input in the input queue and to the next input in the combo's inputs.
   
 * Fail - Input contradicts the query conditions. Stop traversing the input queue and return that the combo has failed.
   
