@@ -124,7 +124,8 @@ CreateContexts {
 You pass a table to the action's Combo key which has 3 keys.
 
 * Query - The query function which interprets the input queue to try to detect if a combo was successful. OmrezKeyBind provides 4 default query functions but users can make their own custom ones.
-* HoldInputs - Which inputs need to be held down for the combo to succeed. Warning: If an input is in both Input and HoldInputs it will conflict and cause unpredictable behavior.)
+* HoldInputs - Which inputs need to be held down for the combo to succeed.
+   Warning: If an input is in both in the Input key of the action and HoldInputs it will conflict and cause unpredictable behavior.
 * GracePeriod - In what time frame the inputs should be accepted. Any input older then the grace period will be ignored.
 
 Query functions:
