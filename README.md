@@ -292,13 +292,13 @@ Toggles a context on and off, enabling or disabling all the actions declared on 
 BindToActionActivated(ActionName : string,Callback : (GameProcessed : boolean,Data : CallbackData) -> ()) : () -> ()
 ```
 
-Adds a callback function to the provided action. When the action's inputs are activated, all callbacks under that action get called. Callbacks receive `GameProcessed`. Returns a disconnect function that removes that specific callback.
+Adds a callback function to the provided action. When the action's inputs are activated, all callbacks under that action get called. Callbacks receive `GameProcessed` and `Data` which holds any data related to the input. Returns a disconnect function that removes that specific callback.
 
 ```lua
 BindToActionDeactivated(ActionName : string,Callback : (GameProcessed : boolean,Data : CallbackData) -> ()) : () -> ()
 ```
 
-Adds a callback function to the provided action. When the action's inputs are deactivated, all callbacks under that action get called. Callbacks receive `GameProcessed`. Returns a disconnect function that removes that specific callback.
+Adds a callback function to the provided action. When the action's inputs are deactivated, all callbacks under that action get called. Callbacks receive `GameProcessed` and `Data` which holds any data related to the input. Returns a disconnect function that removes that specific callback.
 
 ```lua
 SetActionKeybind(ActionName : string,NewBinding : Enum.KeyCode | Enum.UserInputType)
