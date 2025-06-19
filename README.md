@@ -121,14 +121,14 @@ CreateContexts {
 } 
 ```
 
-You pass a table to the action's Combo key which has 3 keys.
+You pass a table to the action's Combo key which has 3 fields.
 
 * Query - The query function which interprets the input queue to try to detect if a combo was successful. If omitted the system will use StrictOrdered.
 * HoldInputs - Which inputs need to be held down for the combo to succeed. Can be omitted if no inputs need to be held down.
   
    Warning: If an input is in both the Input key of the action and HoldInputs it will conflict and cause unpredictable behavior.
   
-* GracePeriod - In what time frame the inputs should be accepted. Any input older then the grace period will be ignored. If key is omitted the value will be set to 0.45 seconds.
+* GracePeriod - In what time frame the inputs should be accepted. Any input older then the grace period will be ignored. Default value is 0.45 seconds.
 
 **Query functions:**
 
