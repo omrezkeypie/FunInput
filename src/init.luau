@@ -13,7 +13,6 @@ export type ComboState = Types.ComboState
 --//Constants
 local INPUT_TRIM_PERIOD = 2
 local DEFAULT_GRACE_PERIOD = 0.45
-local JUST_PRESSED_GRACE_PERIOD = 0.02
 
 local Contexts : {[string] : Types.Context} = {}
 local Keybinds: Types.Keybinds = {}
