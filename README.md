@@ -10,6 +10,58 @@ Wally:
 OmrezKeyBind = "omrezkeypie/omrezkeybind@0.1.3"
 ``` 
 
+# Example Usage
+
+A basic script showing how to setup and use OmrezKeyBind.
+
+```lua
+local OmrezKeyBind = require(script.OmrezKeyBind)
+local CreateContexts = OmrezKeyBind.CreateContexts
+
+local Player = game.Players.LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
+
+local Button = PlayerGui:WaitForChild("MobileButtons")
+    :WaitForChild("Frame")
+    :WaitForChild("PlaceTower")
+
+CreateContexts {
+    Gameplay = {
+        DoSomethingCool = {
+            PC = {
+                Input = Enum.KeyCode.X,
+                Toggle = false,
+                Priority = 5,
+            },
+            Gamepad = {
+                Input = Enum.KeyCode.DPadDown,
+                Toggle = true,
+                Priority = 99999,
+            },
+            Button = {
+                Button = Button,
+                Toggle = false,
+                Priority = 2,
+            },
+            Touch = {
+               Input = OmrezKeyBind.Touch.Tap,
+               Toggle = true,
+               Priority = 3,
+            }
+        },
+    }
+}
+
+local DisconnectActivate = OmrezKeyBind.BindToActionActivated("DoSomethingCool", function()
+    print("Did something cool!")
+end)
+
+local DisconnectDeactivate = OmrezKeyBind.BindToActionDeactivated("DoSomethingCool", function()
+    print("Stopped doing something cool!")
+end)
+```
+
+
 # Features
 
 ### **Action priority**, allowing fine-grained control over which input gets handled when multiple actions share the same keybind.
@@ -220,52 +272,6 @@ Note: Inputs in the input queue get trimmed after 2 seconds.
 
 ---
 
-# Example Usage
-
-A basic script showing how to setup and use OmrezKeyBind.
-
-```lua
-local OmrezKeyBind = require(script.OmrezKeyBind)
-local CreateContexts = OmrezKeyBind.CreateContexts
-
-local Player = game.Players.LocalPlayer
-local PlayerGui = Player:WaitForChild("PlayerGui")
-
-local Button = PlayerGui:WaitForChild("MobileButtons")
-    :WaitForChild("Frame")
-    :WaitForChild("PlaceTower")
-
-CreateContexts {
-    Gameplay = {
-        DoSomethingCool = {
-            PC = {
-                Input = Enum.KeyCode.X,
-                Toggle = false,
-                Priority = 5,
-            },
-            Gamepad = {
-                Input = Enum.KeyCode.DPadDown,
-                Toggle = false,
-                Priority = 99999,
-            },
-            Mobile = {
-                Button = Button,
-                Toggle = false,
-                Priority = 2,
-            }
-        },
-    }
-}
-
-local DisconnectActivate = OmrezKeyBind.BindToActionActivated("DoSomethingCool", function()
-    print("Did something cool!")
-end)
-
-local DisconnectDeactivate = OmrezKeyBind.BindToActionDeactivated("DoSomethingCool", function()
-    print("Stopped doing something cool!")
-end)
-```
-
 # API
 
 ```lua
@@ -323,3 +329,33 @@ GetActionKeybind(ActionName : string) : Enum.KeyCode? | Enum.UserInputType?
 ```
 
 Returns what keybind a specific action has.
+
+```lua
+BindButtonToAction(ActionName : string,Button : TextButton | ImageButton)
+```
+
+Binds a UI button to an action.
+
+```lua
+UnbindActionButton(ActionName : string)
+```
+
+Unbinds the actions UI button if it has one bound to it.
+
+```lua
+ToggleAction(ActionName : string,Toggle : boolean)
+```
+
+Toggle an action. enabling or disabling it.
+
+```lua
+ActionJustPressed(ActionName : string) : boolean
+```
+
+Returns if the given action was activated that frame.
+
+```lua
+ActionJustReleased(ActionName : string) : boolean
+```
+
+Returns if the given action was deactivated that frame.
