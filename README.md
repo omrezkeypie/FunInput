@@ -185,6 +185,7 @@ OmrezKeyBind provides 4 default query functions. these being:
   B + [Any] + A -> Success
 
 **Custom query functions**
+
 For users who want more complex input queue interpreting you can pass your own custom functions instead of using the ones OmrezKeyBind provides.
 
 ```lua
