@@ -130,7 +130,8 @@ You pass a table to the action's Combo key which has 3 keys.
   
 * GracePeriod - In what time frame the inputs should be accepted. Any input older then the grace period will be ignored.
 
-Query functions:
+**Query functions:**
+
 For the explanation assume the actions combo inputs are A + B.
 
 OmrezKeyBind provides 4 default query functions. these being:
