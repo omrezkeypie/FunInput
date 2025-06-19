@@ -223,7 +223,7 @@ OmrezKeyBind provides 4 default query functions. these being:
   B + [Any] + A -> Fail
   
 * LooseUnordered:
-  Input order does not matter and there can be inputs in between them. as long as the inputs are declared in the action are in the input queue the combo will succeed.
+  Input order does not matter and there can be inputs in between them. as long as the inputs declared in the action are in the input queue the combo will succeed.
   
   A + B -> Success
   
