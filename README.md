@@ -132,6 +132,8 @@ You pass a table to the action's Combo key which has 3 keys.
 
 **Query functions:**
 
+To access built-in query functions you can find them in `OmrezKeyBind.Combos`
+
 For the explanation assume the actions combo inputs are A + B.
 
 OmrezKeyBind provides 4 default query functions. these being:
@@ -172,7 +174,7 @@ OmrezKeyBind provides 4 default query functions. these being:
   
 * LooseUnordered
 * 
-  Input order does not matter and there can be inputs in between them. as long as the inputs declared in the action are in the input queue the combo will succeed.
+  Input order does not matter and there can be inputs in between them. as long as the inputs are declared in the action are in the input queue the combo will succeed.
   
   A + B -> Success
   
@@ -182,8 +184,40 @@ OmrezKeyBind provides 4 default query functions. these being:
   
   B + [Any] + A -> Success
 
-Most of these are pretty useless but i made them just to test out the combo query system and logic.
+**Custom query functions**
+For users who want more complex input queue interpreting you can pass your own custom functions instead of using the ones OmrezKeyBind provides.
 
+```lua
+Combo = {
+	--In this example the combo will always succeed no matter the input.
+	Query = function(ComboInputs,QueuedInput,ExpectedInput,ComboState)
+		return OmrezKeyBind.ComboStatus.Succeed
+	end,
+}
+```
+
+The query function takes in 4 parameters:
+
+* ComboInputs - A table which contains the combo's inputs.
+
+* QueuedInput - The input in the input queue we wish to check.
+
+* ExpectedInput - The input the combo expects in the current check.
+
+* ComboState - A table which persists throughout the entire query process. Gets cleaned up when the combo querying finishes. Use this for any state that needs to stick around throughout the entire query process.
+
+The combo query functions use a state machine to traverse the input queue and try to detect if a combo was successful. The query functions return 3 statuses to handle the logic.
+
+* Succeed - Input was as expected. Continue to the next input in input queue and to the next input in the combo's inputs.
+  
+* Fail - Input contradicts the query conditions. Stop traversing the input queue and return that the combo has failed.
+  
+* Ignore - Input doesn't matter for the logic. Ignore this input and move to the next queued input.
+
+To access these statuses you can find them in `OmrezKeyBind.ComboStatus`.
+
+For query function examples you can check out the ComboQueries module.
+  
 Note: Inputs in the input queue get trimmed after 2 seconds.
 
 ---
