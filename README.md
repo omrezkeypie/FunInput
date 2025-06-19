@@ -190,7 +190,7 @@ For the explanation assume the actions combo inputs are A + B.
 
 OmrezKeyBind provides 4 default query functions. these being:
 * StrictOrdered:
-  Inputs must be in order and one after another exactly as shown in the Input key of the action.
+  Inputs must be in order and one after another exactly as declared in the Input key of the action.
   
   A + B -> Success
   
@@ -212,7 +212,7 @@ OmrezKeyBind provides 4 default query functions. these being:
   B + [Any] + A -> Fail
   
 * LooseOrdered:
-  Inputs must be in order as shown in the Input key of the action but other inputs can be in between them.
+  Inputs must be in order as declared in the Input key of the action but other inputs can be in between them.
   
   A + B -> Success
   
