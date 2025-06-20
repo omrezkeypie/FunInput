@@ -7,7 +7,7 @@ It's inspired by Roblox's beta input action system.
 Wally:
 
 ```
-OmrezKeyBind = "omrezkeypie/omrezkeybind@0.2.0"
+OmrezKeyBind = "omrezkeypie/omrezkeybind@0.2.1"
 ``` 
 
 # Example Usage
