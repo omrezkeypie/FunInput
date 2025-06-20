@@ -380,9 +380,7 @@ local function QueueAction(InputType : Types.InputTypes,GameProcessed : boolean,
 	else
 		HeldInputs[InputType] = false
 	end
-	
-	print(InputQueue)
-	
+		
 	local ActionName = GetHighestPriorityAction(InputType)
 	if not ActionName then return end
 		
