@@ -374,11 +374,15 @@ local function QueueAction(InputType : Types.InputTypes,GameProcessed : boolean,
 	if CallbackType == "Activate" then
 		RegisterInput(InputType)
 		
-		HeldInputs[InputType] = true
+		if CallbackData.Device ~= Devices.Touch then
+			HeldInputs[InputType] = true
+		end
 	else
 		HeldInputs[InputType] = false
 	end
-		
+	
+	print(InputQueue)
+	
 	local ActionName = GetHighestPriorityAction(InputType)
 	if not ActionName then return end
 		
@@ -553,13 +557,17 @@ end
 
 UserInputService.InputBegan:Connect(function(Input,GameProcessed)
 	local InputType = Input.KeyCode ~= Enum.KeyCode.Unknown and Input.KeyCode or Input.UserInputType
-		
+	local Device = GetCurrentDevice()
+	if Device == Devices.Touch then return end
+	
 	QueueAction(InputType,GameProcessed,"Activate",{InputType = InputType})
 end)
 
 UserInputService.InputEnded:Connect(function(Input,GameProcessed)
 	local InputType = Input.KeyCode ~= Enum.KeyCode.Unknown and Input.KeyCode or Input.UserInputType
-
+	local Device = GetCurrentDevice()
+	if Device == Devices.Touch then return end
+	
 	QueueAction(InputType,GameProcessed,"Deactivate",{InputType = InputType})
 end)
 
