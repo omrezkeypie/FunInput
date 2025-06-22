@@ -186,7 +186,7 @@ OmrezKeyBind provides 4 default query functions for combos.
 
 Assume the combo input is **A + B** (where A and B are buttons or keys).  
 
-These query functions determine how the combo is matched against recent input history:
+These functions determine how the system interprets the input queue:
 
 | Query Function    | Description                                                                 | A + B | B + A | A + [Any] + B | B + [Any] + A |
 |-------------------|-----------------------------------------------------------------------------|--------|--------|----------------|----------------|
