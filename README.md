@@ -182,54 +182,19 @@ You pass a table to the action's Combo key which has 3 fields.
 
 **Query functions:**
 
-To access built-in query functions you can find them in `OmrezKeyBind.Combos`
+OmrezKeyBind provides 4 default query functions for combos.  
 
-For the explanation assume the actions combo inputs are A + B.
+Assume the combo input is **A + B** (where A and B are buttons or keys).  
 
-OmrezKeyBind provides 4 default query functions. these being:
-* StrictOrdered:
-  Inputs must be in order and one after another exactly as declared in the Input key of the action.
-  
-  A + B -> Success
-  
-  B + A -> Fail
-  
-  A + [Any] + B -> Fail
-  
-  B + [Any] + A -> Fail
-  
-* StrictUnordered:
-  Inputs must be one after another but order does not matter.
-  
-  A + B -> Success
-  
-  B + A -> Success
-  
-  A + [Any] + B -> Fail
-  
-  B + [Any] + A -> Fail
-  
-* LooseOrdered:
-  Inputs must be in order as declared in the Input key of the action but other inputs can be in between them.
-  
-  A + B -> Success
-  
-  B + A -> Fail
-  
-  A + [Any] + B -> Success
-  
-  B + [Any] + A -> Fail
-  
-* LooseUnordered:
-  Input order does not matter and there can be inputs in between them. as long as the inputs declared in the action are in the input queue the combo will succeed.
-  
-  A + B -> Success
-  
-  B + A -> Success
-  
-  A + [Any] + B -> Success
-  
-  B + [Any] + A -> Success
+These query functions determine how the combo is matched against recent input history:
+
+| Query Function    | Description                                                                 | A + B | B + A | A + [Any] + B | B + [Any] + A |
+|-------------------|-----------------------------------------------------------------------------|--------|--------|----------------|----------------|
+| `StrictOrdered`   | Inputs must be in exact order and directly one after another.              | ✅     | ❌     | ❌             | ❌             |
+| `StrictUnordered` | Inputs can be in any order, but must be one after another.                 | ✅     | ✅     | ❌             | ❌             |
+| `LooseOrdered`    | Inputs must be in order, but can have other inputs in between.             | ✅     | ❌     | ✅             | ❌             |
+| `LooseUnordered`  | Inputs can be in any order and have other inputs in between.               | ✅     | ✅     | ✅             | ✅             |
+
 
 **Custom query functions**
 
