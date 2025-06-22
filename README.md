@@ -308,7 +308,7 @@ Sets a specific actions input keybind.
 ResetActionKeybinds()
 ```
 
-Resets all actions keybinds to default. to what is defined in the CreateContexts function call.
+Resets all actions keybinds to default. to what is declared in the CreateContexts function call.
 
 ```lua
 GetCustomKeybinds() : {[string] : Enum.KeyCode | Enum.UserInputType}
