@@ -62,7 +62,7 @@ end)
 
 # Features
 
-### **Action priority**, allowing fine-grained control over which input gets handled when multiple actions share the same input.
+### **Action priority**, allowing fine-grained control over which action gets activated when multiple actions share the same input.
 
 ```lua
 CreateContexts {
