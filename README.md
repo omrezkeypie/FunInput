@@ -184,7 +184,7 @@ You pass a table to the action's Combo key which has 3 fields.
 
 OmrezKeyBind provides 4 default query functions for combos.  
 
-Assume the combo input is **A + B** (where A and B are buttons or keys).  
+For the explanation assume the combo inputs are **A + B**.  
 
 These functions determine how the system interprets the input queue:
 
