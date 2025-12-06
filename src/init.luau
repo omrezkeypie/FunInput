@@ -303,7 +303,7 @@ local function CheckCombo(Context : Types.Context,ActionName : string,InputType 
 		
 	if not Binding then return false end
 	if not Binding.Combo then return true end
-	
+		
 	local ExpectedInputs = Binding.Input	
 	assert(typeof(ExpectedInputs) == "table")
 	
@@ -473,7 +473,7 @@ end
 local function SetActionKeybind(ActionName : string,NewBinding : Types.InputTypes)
 	local CurrentBinding = AssertDefined(GetActionKeybind(ActionName))
 	if not CurrentBinding then return end
-
+	
 	local RemoveIndex
 
 	for Index,Keybind in Keybinds[CurrentBinding] do
@@ -493,6 +493,64 @@ local function SetActionKeybind(ActionName : string,NewBinding : Types.InputType
 	end
 
 	table.insert(Keybinds[NewBinding],Binding)
+end
+
+local function SetActionCombo(ActionName : string,Inputs : {Types.InputTypes},Combo : Types.Combo)
+	local DeviceName = GetCurrentDevice()
+	local Context = AssertDefined(GetContextFromActionName(ActionName))
+		
+	local Binding : Types.Binding = Context.Actions[ActionName][DeviceName]
+	Binding.Combo = Combo
+	Binding.Input = Inputs
+	
+	for _,Input in Inputs do
+		local newKeybind = {
+			ActionName = ActionName,
+			Priority = Binding.Priority or 1,
+		}
+		if not Keybinds[Input] then Keybinds[Input] = {} end
+		
+		table.insert(Keybinds[Input],newKeybind)
+	end
+end
+
+local function ResetActionCombo(ActionName : string,Input : Types.InputTypes)
+	local DeviceName = GetCurrentDevice()
+	local Context = AssertDefined(GetContextFromActionName(ActionName))
+	
+	local Binding = Context.Actions[ActionName][DeviceName]
+	if not Binding.Combo then return end
+	
+	Binding.Combo = nil
+		
+	for _,OldInput in Binding.Input do
+		local Indexes = {}
+		
+		for KeybindInput,Keybind in Keybinds do
+			for Index,BoundKeybind in Keybind do
+				if BoundKeybind.ActionName ~= ActionName then continue end
+							
+				table.insert(Indexes,Index)
+			end
+		end
+		
+		for _,Index in Indexes do
+			table.remove(Keybinds[OldInput],Index)
+		end
+	end
+	
+	Binding.Input = Input
+	
+	if not Keybinds[Input] then
+		Keybinds[Input] = {}
+	end
+	
+	local newKeybind = {
+		ActionName = ActionName,
+		Priority = Binding.Priority or 1,
+	}
+	
+	table.insert(Keybinds[Input],newKeybind)
 end
 
 local function ResetActionKeybinds()
@@ -638,6 +696,8 @@ return {
 	ToggleAction = ToggleAction,
 	ActionJustPressed = ActionJustPressed,
 	ActionJustReleased = ActionJustReleased,
+	SetActionCombo = SetActionCombo,
+	ResetActionCombo = ResetActionCombo,
 	
 	Touch = TouchEnums,
 	Devices = Devices,
