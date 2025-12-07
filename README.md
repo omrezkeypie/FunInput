@@ -270,19 +270,32 @@ SetActionKeybind(ActionName : string,NewBinding : Enum.KeyCode | Enum.UserInputT
 Sets a specific actions input keybind.
 
 ```lua
+SetActionCombo(ActionName : string, Inputs : {Types.InputTypes}, Combo : Types.Combo)
+```
+
+Sets a specific action's input combo keys.
+
+
+```lua
 ResetActionKeybinds()
 ```
 
 Resets all actions keybinds to default. to what is declared in the CreateContexts function call.
 
 ```lua
-GetCustomKeybinds() : {[string] : Enum.KeyCode | Enum.UserInputType}
+ResetActionCombo(ActionName: string, Input: Types.InputTypes)
+```
+
+Resets specific action's bind to a keybind.
+
+```lua
+GetCustomKeybinds() : {[string] : Enum.KeyCode | Enum.UserInputType | {Enum.KeyCode | Enum.UserInputType}}
 ```
 
 Returns a table where the key is the action name and the value is the keybind it corresponds to.
 
 ```lua
-LoadCustomKeybinds(CustomKeybinds : {[string] : Enum.KeyCode | Enum.UserInputType})
+LoadCustomKeybinds(CustomKeybinds : {[string] : Enum.KeyCode | Enum.UserInputType | {Enum.KeyCode | Enum.UserInputType}})
 ```
 
 Gets passed a table in the format that GetCustomKeybinds returns and sets all actions keybind to what is specified in the table.
