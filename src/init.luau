@@ -557,10 +557,10 @@ local function ResetActionKeybinds()
 	Keybinds = table.clone(OriginalKeybinds)
 end
 
-local function GetCustomKeybinds() : {[string] : Types.InputTypes}
+local function GetCustomKeybinds() : {[string] : Types.InputTypes | {Types.InputTypes}}
 	local CustomKeybinds = {}
 
-	for KeyCode,Bindings in Keybinds do
+	for KeyCode, Bindings in Keybinds do
 		for _,Binding in Bindings do
 			CustomKeybinds[Binding.ActionName] = KeyCode
 		end
@@ -569,9 +569,17 @@ local function GetCustomKeybinds() : {[string] : Types.InputTypes}
 	return CustomKeybinds
 end
 
-local function LoadCustomKeybinds(CustomKeybinds : {[string] : Types.InputTypes})
-	for ActionName,KeyCode in CustomKeybinds do
-		SetActionKeybind(ActionName,KeyCode)
+local function LoadCustomKeybinds(CustomKeybinds : {[string] : Types.InputTypes | {Types.InputTypes}}, Combo: Types.Combo?)
+	for ActionName, Inputs in CustomKeybinds do
+		if typeof(Inputs) == "table" then
+			if not Combo then
+				warn(`Combo information does not exist!`)
+				return
+			end
+			SetActionCombo(ActionName, Inputs, Combo)
+		else
+			SetActionKeybind(ActionName, Inputs)
+		end
 	end
 end
 
